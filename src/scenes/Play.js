@@ -9,12 +9,14 @@ class Play extends Phaser.Scene {
         this.load.image('book1', './assets/book1.png');
         this.load.image('book2', './assets/book2.png');
         this.load.image('book3', './assets/book3.png');
+        this.load.image('book4', './assets/book4.png');
         this.load.image('background', './assets/background.png');
 
         // load spritesheet
         this.load.spritesheet('explosion1', './assets/book1Explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         this.load.spritesheet('explosion2', './assets/book2Explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         this.load.spritesheet('explosion3', './assets/book3Explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('explosion4', './assets/book4Explosion.png', {frameWidth: 48, frameHeight: 24, startFrame: 0, endFrame: 9});
       }
 
     create() {
@@ -35,6 +37,9 @@ class Play extends Phaser.Scene {
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'book1', 0, 30, 1).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'book2', 0, 20, 2).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'book3', 0, 10, 3).setOrigin(0,0);
+
+        // tiny spaceship
+        this.ship04 = new FasterSpaceship(this, game.config.width - borderUISize*3, borderUISize*7 + borderPadding*6, 'book4', 0, 60, 4).setOrigin(0,0);
     
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -56,6 +61,11 @@ class Play extends Phaser.Scene {
         this.anims.create({
             key: 'explode3',
             frames: this.anims.generateFrameNumbers('explosion3', { start: 0, end: 9, first: 0}),
+            frameRate: 30
+        });
+        this.anims.create({
+            key: 'explode4',
+            frames: this.anims.generateFrameNumbers('explosion4', { start: 0, end: 9, first: 0}),
             frameRate: 30
         });
 
@@ -106,10 +116,16 @@ class Play extends Phaser.Scene {
             // update spaceships (x3)
             this.ship01.update();               
             this.ship02.update();
-            this.ship03.update();          
+            this.ship03.update();
+            
+            this.ship04.update();
         } 
 
         // check collisions
+        if(this.checkCollision(this.p1Rocket, this.ship04)) {
+            this.p1Rocket.reset();
+            this.shipExplode(this.ship04);   
+        }
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);   
