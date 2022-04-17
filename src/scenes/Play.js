@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
+        this.load.image('magic', './assets/magic.png');
         this.load.image('book1', './assets/book1.png');
         this.load.image('book2', './assets/book2.png');
         this.load.image('book3', './assets/book3.png');
@@ -26,13 +26,13 @@ class Play extends Phaser.Scene {
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(0, 0, game.config.width, borderUISize, 0x220a07).setOrigin(0, 0);
+        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0x220a07).setOrigin(0, 0);
+        this.add.rectangle(0, 0, borderUISize, game.config.height, 0x220a07).setOrigin(0, 0);
+        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0x220a07).setOrigin(0, 0);
         
         // add rocket (p1)
-        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding - 7, 'rocket').setOrigin(0.5, 0);
+        this.p1Rocket = new Rocket(this, game.config.width/2, game.config.height - borderUISize - borderPadding - 7, 'magic').setOrigin(0.5, 0);
         // add spaceship (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'book1', 0, 30, 1).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'book2', 0, 20, 2).setOrigin(0,0);
@@ -104,8 +104,7 @@ class Play extends Phaser.Scene {
         // GAME OVER flag
         this.gameOver = false;
         // clock
-        //this.timeRemaining = game.settings.gameTimer;
-        this.timeRemaining = 1000;
+        this.timeRemaining = game.settings.gameTimer;
 
         this.clock = this.time.addEvent({
             delay: 1000,
@@ -218,6 +217,7 @@ class Play extends Phaser.Scene {
 
         // score add and repaint
         this.p1Score += ship.points;
+        this.timeRemaining += ship.points * 100;
         this.scoreLeft.text = this.p1Score;
         
         //sound effect

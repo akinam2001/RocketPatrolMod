@@ -5,14 +5,18 @@ class Menu extends Phaser.Scene {
 
     preload() {
         // load audio
-        this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
+        this.load.audio('sfx_select', './assets/blip_select.wav');
+        this.load.audio('sfx_explosion', './assets/explosion.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+
+        // load background
+        this.load.image('background', './assets/background.png');
     }
 
     create() {
-        // this.add.text(20, 20, "Rocket Patrol Menu");
-        // this.scene.start("playScene");
+        // add background
+        this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
+
         // add menu text
         let menuConfig = {
             fontFamily: 'Courier',
@@ -27,7 +31,7 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
         }
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 
-            "ROCKET PATROL", menuConfig).setOrigin(0.5);
+            "BOOK PATROL", menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2, "Use ←→ arrows to move & (F) to fire", 
             menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = "#00FF00";
@@ -38,6 +42,7 @@ class Menu extends Phaser.Scene {
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     }
 
 
@@ -59,6 +64,9 @@ class Menu extends Phaser.Scene {
             }
             this.sound.play('sfx_select');
             this.scene.start('playScene');    
+        }
+        if (Phaser.Input.Keyboard.JustDown(keyENTER)) {
+            console.log("enter");  
         }
     }
 }
