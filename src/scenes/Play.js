@@ -24,7 +24,7 @@ class Play extends Phaser.Scene {
         this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
 
         // green UI background
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
+        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x54302b).setOrigin(0, 0);
         // white borders
         this.add.rectangle(0, 0, game.config.width, borderUISize, 0x220a07).setOrigin(0, 0);
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0x220a07).setOrigin(0, 0);
@@ -75,8 +75,8 @@ class Play extends Phaser.Scene {
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#315c2b',
+            color: '#220a07',
             align: 'right',
             padding: {
             top: 5,
@@ -86,12 +86,12 @@ class Play extends Phaser.Scene {
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
 
-        // display score
+        // display clock
         let clockConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#315c2b',
+            color: '#220a07',
             align: 'right',
             padding: {
             top: 5,
@@ -124,10 +124,10 @@ class Play extends Phaser.Scene {
         }
         // gameOver score
         let gameOverConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            fontFamily: 'Papyrus',
+            fontSize: '24px',
+            backgroundColor: '#315c2b',
+            color: '#220a07',
             align: 'right',
             padding: {
             top: 5,
@@ -138,7 +138,7 @@ class Play extends Phaser.Scene {
 
         if(this.timeRemaining == 0){
             this.add.text(game.config.width/2, game.config.height/2, "GAME OVER", gameOverConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, "Press (R) to Restart or ← for Menu", gameOverConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, "Press (R) to Restart or (←) for Menu", gameOverConfig).setOrigin(0.5);
             this.gameOver = true;
         }
         

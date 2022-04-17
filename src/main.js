@@ -5,7 +5,7 @@
  * 
  * Date: 04/18/2022
  * 
- * Time Taken: 4 hrs 
+ * Time Taken: 11 hrs 
  * 
  * Points Breakdown:
  * Redesign the game's artwork, UI, and sound to change its theme/aesthetic (to something other than sci-fi) (60)
