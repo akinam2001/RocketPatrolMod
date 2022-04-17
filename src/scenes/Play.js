@@ -109,7 +109,6 @@ class Play extends Phaser.Scene {
         this.clock = this.time.addEvent({
             delay: 1000,
             callback: () => {
-                console.log("1 second");
                 this.timeRemaining -= 1000;
             },
             callbackScope: this,

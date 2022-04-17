@@ -65,7 +65,6 @@ class Menu extends Phaser.Scene {
             this.scene.start('playScene');    
         }
         if (Phaser.Input.Keyboard.JustDown(keyENTER)) {
-            console.log("enter");  
             this.start = false;
 
             let menuConfig = {
