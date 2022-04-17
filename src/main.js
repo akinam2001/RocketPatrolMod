@@ -1,7 +1,7 @@
 /**
  * Name: Anika Mahajan
  * 
- * Project: Rocket Patrol Mods
+ * Project: Book Patrol (Rocket Patrol Mods)
  * 
  * Date: 04/18/2022
  * 
@@ -31,3 +31,6 @@ let borderPadding = borderUISize / 3;
 
 // reserve keyboard vars
 let keyF, keyR, keyLEFT, keyRIGHT;
+
+// reserve counter var
+let clock;
